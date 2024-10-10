@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://buoav0iem8ihc"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_8hfny"]
+[ext_resource type="PackedScene" uid="uid://belqbru3yqd3e" path="res://ball.tscn" id="1_buuex"]
+[ext_resource type="PackedScene" uid="uid://d3jpckb2e1bdp" path="res://target.tscn" id="3_hcx26"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r7vwn"]
+sky_top_color = Color(0.347441, 0.473434, 0.500216, 1)
+sky_horizon_color = Color(0.555089, 0.65012, 0.881385, 1)
+ground_bottom_color = Color(0.213851, 0.162316, 0.132009, 1)
+
+[sub_resource type="Sky" id="Sky_pedhx"]
+sky_material = SubResource("ProceduralSkyMaterial_r7vwn")
+
+[sub_resource type="Environment" id="Environment_coxvk"]
+background_mode = 2
+sky = SubResource("Sky_pedhx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj0wy"]
+albedo_color = Color(0.759835, 0.646016, 0.248139, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6m880"]
+size = Vector3(99.9626, 1, 95.8839)
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_8hfny")
+power = null
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_coxvk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.989156, 0.139606, 0.0456058, 0.0500762, -0.612513, 0.788873, 0.138065, -0.778035, -0.612862, 0, 9.2904, -20.0476)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="StaticBody3D"]
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_pj0wy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0486298, 0, 2.4693)
+shape = SubResource("BoxShape3D_6m880")
+
+[node name="ball" parent="." instance=ExtResource("1_buuex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30346, 6.38036)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.000398797, -0.0248015, 0.999692, -0.000268646, 0.999692, 0.0248016, -1, -0.000278439, 0.000392022, 7.87442, 2.77764, -1.51528)
+
+[node name="Win Label" type="Label3D" parent="Camera3D"]
+transform = Transform3D(1, 2.91038e-11, 0, 2.91038e-11, 1, 2.60155e-09, 0, 7.38908e-10, 1, -0.000676751, 0.0420914, -1.69661)
+text = "TOWER HAS BEEN DESTROYED. YOU WIN!"
+
+[node name="target" parent="." instance=ExtResource("3_hcx26")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.87063, -8.62855)
+
+[connection signal="body_entered" from="ball" to="." method="_on_ball_body_entered"]
