@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://buoav0iem8ihc"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_8hfny"]
+[ext_resource type="Script" path="res://world/world.gd" id="1_8hfny"]
 [ext_resource type="PackedScene" uid="uid://belqbru3yqd3e" path="res://ball/ball.tscn" id="1_buuex"]
 [ext_resource type="PackedScene" uid="uid://d3jpckb2e1bdp" path="res://target/target.tscn" id="3_hcx26"]
 
