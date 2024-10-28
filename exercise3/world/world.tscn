@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_8hfny"]
 [ext_resource type="PackedScene" uid="uid://belqbru3yqd3e" path="res://ball/ball.tscn" id="1_buuex"]
-[ext_resource type="PackedScene" uid="uid://d3jpckb2e1bdp" path="res://target/target.tscn" id="3_hcx26"]
+[ext_resource type="PackedScene" uid="uid://cv3osouviynnf" path="res://target/target.tscn" id="3_hcx26"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r7vwn"]
 sky_top_color = Color(0.347441, 0.473434, 0.500216, 1)
@@ -53,7 +53,7 @@ transform = Transform3D(0.000398797, -0.0248015, 0.999692, -0.000268646, 0.99969
 unique_name_in_owner = true
 transform = Transform3D(1, 2.91038e-11, 0, 2.91038e-11, 1, 2.60155e-09, 0, 7.38908e-10, 1, -0.000676751, 0.0420914, -1.69661)
 
-[node name="target" parent="." groups=["targets"] instance=ExtResource("3_hcx26")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.69544, -7.89261)
+[node name="RigidBody3D" parent="." instance=ExtResource("3_hcx26")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14436, -4.57627)
 
 [connection signal="body_entered" from="ball" to="." method="_on_ball_body_entered"]
