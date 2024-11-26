@@ -11,7 +11,7 @@ offset_top = 141.0
 offset_right = 855.0
 offset_bottom = 266.0
 theme_override_font_sizes/font_size = 71
-text = "Tower Wrecker"
+text = "Cube Shooter"
 
 [node name="Button" type="Button" parent="."]
 offset_left = 545.0

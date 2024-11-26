@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://buoav0iem8ihc"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_8hfny"]
-[ext_resource type="PackedScene" uid="uid://belqbru3yqd3e" path="res://ball/ball.tscn" id="1_buuex"]
-[ext_resource type="PackedScene" uid="uid://cv3osouviynnf" path="res://target/target.tscn" id="3_hcx26"]
+[ext_resource type="PackedScene" uid="uid://cjm6pxnov64lh" path="res://cannon/cannon.tscn" id="2_sjns1"]
+[ext_resource type="PackedScene" uid="uid://dg0r1s3ribsct" path="res://cube/cube.tscn" id="3_otf56"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_r7vwn"]
 sky_top_color = Color(0.347441, 0.473434, 0.500216, 1)
@@ -34,6 +34,7 @@ transform = Transform3D(0.989156, 0.139606, 0.0456058, 0.0500762, -0.612513, 0.7
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="Floor" type="CSGBox3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00171208, 0, -0.0119562)
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_pj0wy")
 
@@ -41,19 +42,26 @@ material = SubResource("StandardMaterial3D_pj0wy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0486298, 0, 2.4693)
 shape = SubResource("BoxShape3D_6m880")
 
-[node name="ball" parent="." instance=ExtResource("1_buuex")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.30346, 6.38036)
-contact_monitor = true
-max_contacts_reported = 1
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.000398797, -0.0248015, 0.999692, -0.000268646, 0.999692, 0.0248016, -1, -0.000278439, 0.000392022, 7.87442, 2.77764, -1.51528)
+fov = 68.2
 
 [node name="WinLabel" type="Label3D" parent="Camera3D"]
 unique_name_in_owner = true
 transform = Transform3D(1, 2.91038e-11, 0, 2.91038e-11, 1, 2.60155e-09, 0, 7.38908e-10, 1, -0.000676751, 0.0420914, -1.69661)
 
-[node name="RigidBody3D" parent="." instance=ExtResource("3_hcx26")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14436, -4.57627)
+[node name="CubesLeft" type="Label3D" parent="Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 5.82077e-11, 0, 1.45519e-10, 1, 1.00521e-08, 0, 7.38801e-10, 1, -1.30194, 0.959837, -1.66058)
+text = "Cubes Left : 3/3"
 
-[connection signal="body_entered" from="ball" to="." method="_on_ball_body_entered"]
+[node name="Cannon" parent="." instance=ExtResource("2_sjns1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69643, 5.91631)
+
+[node name="Cube" parent="." groups=["cubes"] instance=ExtResource("3_otf56")]
+
+[node name="Cube2" parent="." groups=["cubes"] instance=ExtResource("3_otf56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.9319, -0.924682)
+
+[node name="Cube3" parent="." groups=["cubes"] instance=ExtResource("3_otf56")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38468, -3.42609)

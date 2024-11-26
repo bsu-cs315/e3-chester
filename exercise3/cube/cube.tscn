@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg0r1s3ribsct"]
+
+[ext_resource type="Script" path="res://cube/cube.gd" id="1_pw4ot"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yhk7n"]
+
+[node name="Cube" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.42994, -6.95343)
+gravity_scale = 0.0
+angular_velocity = Vector3(0, 0.872665, 0.872665)
+script = ExtResource("1_pw4ot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_yhk7n")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
